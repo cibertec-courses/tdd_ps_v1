@@ -28,6 +28,24 @@ class CalculadorNotasTest {
         assertEquals(16.35, calculadorNotas.calcularPromedio());
     }
 
+    @Test
+    @DisplayName("El promedio de 15, 15 y 15 es 15")
+    void deberiaCalcularElPromedioDeVariasNotas(){
+        calculadorNotas.agragarNotas(15.0);
+        calculadorNotas.agragarNotas(15.0);
+        calculadorNotas.agragarNotas(15.0);
 
+        assertEquals(15.0, calculadorNotas.calcularPromedio());
+    }
+
+    @Test
+    @DisplayName("Con promedio menor 13 el estado debe ser DESAPROBADO")
+    void deberiaRetornarDesaprobadoCuandoElPromedioEsMenorAlMinimo(){
+        calculadorNotas.agragarNotas(12.0);
+        calculadorNotas.agragarNotas(11.0);
+        calculadorNotas.agragarNotas(10.3);
+
+        assertEquals("Desaprobado!".toLowerCase(), calculadorNotas.obtenerEstado().toLowerCase());
+    }
 
 }
